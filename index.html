@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>NexusPlay | A Arena dos Deuses - Responsivo</title>
+    <style>
+        /* ===== RESET E ESTILOS GLOBAIS - TOTALMENTE RESPONSIVOS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0c12;
+            font-family: 'Segoe UI', 'Orbitron', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Arial', sans-serif;
+            line-height: 1.5;
+            color: #eef5ff;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* container fluido responsivo — sem largura fixa */
+        .responsive-container {
+            max-width: 1400px;
+            width: 90%;
+            margin: 0 auto;
+            background-color: #0a0c12;
+            box-shadow: none;
+        }
+
+        /* ajustes para telas muito grandes */
+        @media (min-width: 1600px) {
+            .responsive-container {
+                max-width: 1500px;
+                width: 85%;
+            }
+        }
+
+        /* ========== HEADER RESPONSIVO ========== */
+        .main-header {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2f 100%);
+            border-bottom: 3px solid #ff3366;
+            padding: 0 5%;
+            height: auto;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 10px;
+        }
+
+        .logo-area h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(24px, 6vw, 36px);
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ff3366, #ffaa44);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px rgba(255,51,102,0.3);
+        }
+
+        .logo-area p {
+            font-size: clamp(10px, 3vw, 13px);
+            color: #9aa2bf;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(16px, 4vw, 32px);
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: #eef5ff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: clamp(14px, 3.5vw, 18px);
+            transition: 0.2s;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 680px) {
+            .nav-links a {
+                white-space: normal;
+                font-size: 14px;
+            }
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 5%;
+            }
+        }
+
+        /* ========== HERO SECTION - FLEX RESPONSIVO ========== */
+        .hero {
+            background: radial-gradient(circle at 20% 30%, #19212b, #03050b);
+            padding: clamp(40px, 6vw, 80px) 5%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            border-bottom: 1px solid #2a2e3f;
+            border-radius: 32px;
+            margin: 20px 0;
+        }
+
+        .hero-text {
+            flex: 1.2;
+            min-width: 260px;
+        }
+
+        .hero-text .badge {
+            background: #ff3366;
+            display: inline-block;
+            padding: 6px 18px;
+            font-size: clamp(12px, 3vw, 14px);
+            font-weight: bold;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(255,51,102,0.4);
+        }
+
+        .hero-text h2 {
+            font-size: clamp(32px, 8vw, 58px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h2 span {
+            color: #ffaa44;
+            text-shadow: 0 0 6px #ffaa44;
+        }
+
+        .hero-text p {
+            font-size: clamp(14px, 3.5vw, 18px);
+            color: #bdc3e0;
+            margin-bottom: 32px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .btn-primary, .btn-secondary {
+            font-size: clamp(14px, 4vw, 18px);
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #ff3366;
+            color: white;
+            box-shadow: 0 5px 0 #a01e42;
+        }
+
+        .btn-primary:hover {
+            background: #ff5577;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #a01e42;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #ffaa44;
+            color: #ffdd99;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,170,68,0.1);
+            border-color: #ffcc66;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
+        }
+
+        /* ========== JOGOS EM DESTAQUE - GRID RESPONSIVO ========== */
+        .featured {
+            padding: 60px 5%;
+            background: #0f111a;
+            border-radius: 32px;
+            margin: 20px 0;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 7vw, 44px);
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            color: #ffaa44;
+            border-bottom: 4px solid #ff3366;
+            padding-bottom: 6px;
+        }
+
+        .games-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: center;
+        }
+
+        .game-card {
+            background: #181c28;
+            width: 100%;
+            max-width: 280px;
+            flex: 1 1 240px;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.25s linear;
+            border: 1px solid #2a2f3f;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: #ff6680;
+            box-shadow: 0 12px 26px rgba(0,0,0,0.5);
+        }
+
+        .game-img {
+            height: 170px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .game-info {
+            padding: 20px 18px 24px;
+        }
+
+        .game-info h3 {
+            font-size: clamp(20px, 5vw, 24px);
+            margin-bottom: 8px;
+        }
+
+        .game-info p {
+            color: #9fa9c9;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .game-tag {
+            background: #ff336620;
+            color: #ff7799;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* ========== BANNER PROMO RESPONSIVO ========== */
+        .promo-banner {
+            background: linear-gradient(90deg, #1a1c2c, #221f32);
+            margin: 20px 0 40px;
+            border-radius: 28px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px;
+            border-left: 8px solid #ffaa44;
+            gap: 20px;
+        }
+
+        .promo-text h4 {
+            font-size: clamp(18px, 5vw, 28px);
+            font-weight: 700;
+        }
+
+        .promo-text p {
+            font-size: clamp(13px, 3.5vw, 16px);
+        }
+
+        .promo-btn {
+            background: #ffaa44;
+            color: #1e1b2c;
+            border: none;
+            font-weight: bold;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: clamp(14px, 4vw, 18px);
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 650px) {
+            .promo-btn {
+                white-space: normal;
+                width: 100%;
+                text-align: center;
+            }
+            .promo-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* ========== RANKING RESPONSIVO ========== */
+        .rank-section {
+            padding: 30px 5% 70px;
+            background: #0c0e16;
+            border-radius: 32px;
+            margin: 20px 0;
+        }
+
+        .rank-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 30px;
+            gap: 12px;
+        }
+
+        .rank-header h3 {
+            font-size: clamp(22px, 6vw, 34px);
+        }
+
+        .rank-header a {
+            color: #ffaa66;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: clamp(13px, 3.5vw, 16px);
+        }
+
+        .rank-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #10131e;
+            border-radius: 24px;
+            overflow-x: auto;
+            display: block;
+        }
+
+        .rank-table thead, .rank-table tbody, .rank-table tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .rank-table th, .rank-table td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #22273a;
+            word-break: break-word;
+        }
+
+        @media (max-width: 600px) {
+            .rank-table th, .rank-table td {
+                padding: 10px 8px;
+                font-size: 13px;
+            }
+            .player-score {
+                font-size: 14px;
+            }
+        }
+
+        .rank-table th {
+            background: #1e2337;
+            color: #ffcc99;
+            font-weight: 700;
+        }
+
+        .rank-number {
+            font-weight: bold;
+            font-size: clamp(16px, 4vw, 20px);
+            width: 60px;
+            color: #ffaa55;
+        }
+
+        .player-name {
+            font-weight: 600;
+        }
+
+        .player-score {
+            font-family: monospace;
+            font-size: clamp(14px, 3.5vw, 18px);
+            font-weight: bold;
+            color: #66ffcc;
+        }
+
+        /* ========== NEWSLETTER ========== */
+        .newsletter {
+            background: #131725;
+            margin: 20px 0 50px;
+            border-radius: 40px;
+            padding: 40px 6%;
+            text-align: center;
+            box-shadow: inset 0 0 0 1px #2a2f42, 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .newsletter h3 {
+            font-size: clamp(24px, 6vw, 34px);
+            margin-bottom: 12px;
+        }
+
+        .newsletter p {
+            color: #aeb9db;
+            margin-bottom: 28px;
+            font-size: clamp(14px, 3.5vw, 16px);
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .form-group input {
+            background: #0b0e18;
+            border: 1px solid #373e5a;
+            padding: 14px 20px;
+            width: 100%;
+            max-width: 340px;
+            border-radius: 60px;
+            font-size: 16px;
+            color: white;
+            outline: none;
+            flex: 1;
+        }
+
+        .form-group button {
+            background: #ff3366;
+            border: none;
+            padding: 0 28px;
+            height: 52px;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 520px) {
+            .form-group button {
+                white-space: normal;
+                padding: 12px 20px;
+                height: auto;
+                width: 100%;
+            }
+            .form-group input {
+                max-width: 100%;
+            }
+        }
+
+        /* ========== FOOTER RESPONSIVO ========== */
+        .main-footer {
+            background: #07090f;
+            padding: 40px 5% 30px;
+            border-top: 1px solid #252a3c;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .footer-col {
+            flex: 1 1 180px;
+            min-width: 150px;
+        }
+
+        .footer-col h4 {
+            font-size: clamp(18px, 4vw, 22px);
+            margin-bottom: 20px;
+            color: #ffaa66;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: #a0a8ca;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        .footer-col a:hover {
+            color: #ff6680;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 24px 5% 20px;
+            background: #030409;
+            color: #6c7295;
+            font-size: 13px;
+            border-top: 1px solid #1a1e2c;
+            width: 100%;
+            border-radius: 0 0 24px 24px;
+        }
+
+        /* ajustes extras para imagens e scroll suave */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button, a {
+            cursor: pointer;
+        }
+
+        /* pequenas correções de hover em mobile */
+        @media (hover: hover) {
+            .game-card:hover {
+                transform: translateY(-8px);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="responsive-container">
+    <!-- CABEÇALHO -->
+    <header class="main-header">
+        <div class="logo-area">
+            <h1>⚡ NEXUSPLAY</h1>
+            <p>REINO DOS JOGADORES</p>
+        </div>
+        <div class="nav-links">
+            <a href="#">INÍCIO</a>
+            <a href="#">JOGOS</a>
+            <a href="#">RANKING</a>
+            <a href="#">COMUNIDADE</a>
+            <a href="#">LOJA</a>
+        </div>
+    </header>
+
+    <!-- HERO PRINCIPAL -->
+    <section class="hero">
+        <div class="hero-text">
+            <div class="badge">🔥 NOVO MUNDO ABERTO</div>
+            <h2>DOMINE A <span>ARENA</span> <br> DOS DEUSES</h2>
+            <p>Entre no jogo de ação definitivo. Batalhas épicas, gráficos de última geração e uma comunidade que cresce a cada segundo. Derrote seus inimigos e suba no ranking global agora!</p>
+            <div class="btn-group">
+                <button class="btn-primary" id="btnJogarAgora">JOGAR AGORA</button>
+                <button class="btn-secondary" id="btnTrailer">ASSISTIR TRAILER</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://placehold.co/600x500/1f1a2e/ff6680?text=GUERREIRO+DRAGON&font=montserrat" alt="Personagem Jogo NexusPlay">
+        </div>
+    </section>
+
+    <!-- JOGOS EM DESTAQUE (CARDS) -->
+    <section class="featured">
+        <div class="section-title"><span>⚔️ JOGOS EM DESTAQUE ⚔️</span></div>
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://placehold.co/400x200/2a1e3c/dd5588?text=Shadow+Legends');"></div>
+                <div class="game-info">
+                    <h3>Shadow Legends</h3>
+                    <p>RPG sombrio com combates táticos e heróis lendários.</p>
+                    <span class="game-tag">MMORPG</span>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://placehold.co/400x200/1f2c2e/44ffaa?text=Cyber+Strike');"></div>
+                <div class="game-info">
+                    <h3>Cyber Strike</h3>
+                    <p>FPS futurista, alta velocidade e rivalidades intensas.</p>
+                    <span class="game-tag">FPS</span>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://placehold.co/400x200/261f2a/f0aa44?text=Dragonspire');"></div>
+                <div class="game-info">
+                    <h3>Dragonspire</h3>
+                    <p>Domine dragões e reconstrua reinos em mundo aberto.</p>
+                    <span class="game-tag">AÇÃO</span>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('https://placehold.co/400x200/141e30/66ccff?text=Racing+Xtreme');"></div>
+                <div class="game-info">
+                    <h3>Racing Xtreme</h3>
+                    <p>Corridas radicais com nitro infinito e pistas impossíveis.</p>
+                    <span class="game-tag">CORRIDA</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER PROMOCIONAL -->
+    <div class="promo-banner">
+        <div class="promo-text">
+            <h4>🏆 PROMOÇÃO DE LANÇAMENTO 🏆</h4>
+            <p>Até 50% de desconto em skins lendárias + bônus de 1000 moedas para novos guerreiros!</p>
+        </div>
+        <button class="promo-btn" id="btnPromocao">RESGATAR OFERTA</button>
+    </div>
+
+    <!-- RANKING DOS MELHORES JOGADORES -->
+    <section class="rank-section">
+        <div class="rank-header">
+            <h3>🏅 LENDA DOS JOGADORES 🏅</h3>
+            <a href="#" id="rankLink">VER RANKING COMPLETO →</a>
+        </div>
+        <div style="overflow-x: auto;">
+            <table class="rank-table">
+                <thead>
+                    <tr><th>#</th><th>JOGADOR</th><th>PONTOS</th><th>CLASSE</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="rank-number">1</td><td class="player-name">⚡ Kaelen_SV</td><td class="player-score">12,450</td><td>Mago Rubro</td></tr>
+                    <tr><td class="rank-number">2</td><td class="player-name">🔥 Nyx_Furia</td><td class="player-score">11,870</td><td>Assassina Sombria</td></tr>
+                    <tr><td class="rank-number">3</td><td class="player-name">🛡️ Thorin_Stone</td><td class="player-score">10,990</td><td>Paladino Colossal</td></tr>
+                    <tr><td class="rank-number">4</td><td class="player-name">🎯 MirageX</td><td class="player-score">9,540</td><td>Arqueiro Fatal</td></tr>
+                    <tr><td class="rank-number">5</td><td class="player-name">🌀 Vex_Core</td><td class="player-score">8,210</td><td>Mestre das Runas</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER E COMUNIDADE -->
+    <div class="newsletter">
+        <h3>📢 Entre na Irmandade dos Jogadores</h3>
+        <p>Receba códigos secretos, novidades e convites para torneios semanais.</p>
+        <div class="form-group">
+            <input type="email" id="emailGamer" placeholder="Seu melhor e-mail gamer">
+            <button id="btnInscricao">INSCREVER-SE</button>
+        </div>
+    </div>
+
+    <!-- FOOTER COM INFORMAÇÕES -->
+    <footer class="main-footer">
+        <div class="footer-col">
+            <h4>NEXUSPLAY</h4>
+            <ul>
+                <li><a href="#" class="footer-link">Sobre nós</a></li>
+                <li><a href="#" class="footer-link">Carreiras</a></li>
+                <li><a href="#" class="footer-link">Imprensa</a></li>
+                <li><a href="#" class="footer-link">Termos de serviço</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>JOGOS</h4>
+            <ul>
+                <li><a href="#" class="footer-link">Todos os jogos</a></li>
+                <li><a href="#" class="footer-link">Novidades</a></li>
+                <li><a href="#" class="footer-link">Próximos lançamentos</a></li>
+                <li><a href="#" class="footer-link">Jogos gratuitos</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>SUPORTE</h4>
+            <ul>
+                <li><a href="#" class="footer-link">Central de ajuda</a></li>
+                <li><a href="#" class="footer-link">Comunidade</a></li>
+                <li><a href="#" class="footer-link">Status dos servidores</a></li>
+                <li><a href="#" class="footer-link">Reportar bug</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>SOCIAL</h4>
+            <ul>
+                <li><a href="#" class="footer-link">Discord</a></li>
+                <li><a href="#" class="footer-link">Twitter/X</a></li>
+                <li><a href="#" class="footer-link">Twitch</a></li>
+                <li><a href="#" class="footer-link">Youtube</a></li>
+            </ul>
+        </div>
+    </footer>
+    <div class="copyright">
+        © 2025 NEXUSPLAY — Todos os direitos reservados. Arena dos Deuses é uma marca registrada. Prepare-se para batalhar!
+    </div>
+</div>
+
+<!-- SCRIPT TOTALMENTE FUNCIONAL E INTERATIVO -->
+<script>
+    (function() {
+        // Botão Jogar Agora
+        const btnJogar = document.getElementById('btnJogarAgora');
+        if(btnJogar) {
+            btnJogar.addEventListener('click', () => {
+                alert("⚡ Modo batalha iniciado! Prepare-se para a arena (demo interativa).");
+            });
+        }
+        // Trailer
+        const btnTrailer = document.getElementById('btnTrailer');
+        if(btnTrailer) {
+            btnTrailer.addEventListener('click', () => {
+                alert("🎬 Trailer épico em breve! Acompanhe as redes da NexusPlay.");
+            });
+        }
+        // Promoção
+        const btnPromo = document.getElementById('btnPromocao');
+        if(btnPromo) {
+            btnPromo.addEventListener('click', () => {
+                alert("🎁 Código promocional aplicado! Use DRAGON50 na loja para ganhar 50% OFF.");
+            });
+        }
+        // Newsletter
+        const btnNews = document.getElementById('btnInscricao');
+        const emailInput = document.getElementById('emailGamer');
+        if(btnNews && emailInput) {
+            btnNews.addEventListener('click', () => {
+                let email = emailInput.value.trim();
+                if(email === "" || !email.includes("@") || !email.includes(".")) {
+                    alert("📧 Por favor, insira um e-mail válido para receber as novidades!");
+                } else {
+                    alert(`✅ Obrigado, guerreiro! Enviamos um código de boas-vindas para ${email}`);
+                    emailInput.value = "";
+                }
+            });
+        }
+
+        // Navegação do header
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert(`🚀 Navegando para: ${link.innerText} (versão interativa da landing)`);
+            });
+        });
+
+        // Link do ranking completo
+        const rankLink = document.getElementById('rankLink');
+        if(rankLink) {
+            rankLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert("🏆 Ranking completo disponível em breve. Fique ligado!");
+            });
+        }
+
+        // Todos os links do footer
+        const footerLinks = document.querySelectorAll('.footer-link');
+        footerLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert(`🔗 Seção "${link.innerText}" - Em desenvolvimento, mas a NexusPlay agradece seu interesse!`);
+            });
+        });
+
+        // Pequeno efeito extra para cards (apenas feedback visual, mas mantém)
+        const cards = document.querySelectorAll('.game-card');
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const titulo = card.querySelector('h3')?.innerText || 'jogo';
+                alert(`✨ Em breve: mais informações sobre ${titulo}. Fique de olho!`);
+            });
+        });
+    })();
+</script>
+</body>
+</html>
